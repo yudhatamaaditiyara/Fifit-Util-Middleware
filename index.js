@@ -16,10 +16,10 @@
 'use strict';
 
 /**
- * @param {Array} middleware
+ * @param {Array} stack
  * @returns {function}
  */
-module.exports = (middleware) => {
+module.exports = (stack) => {
 	/**
 	 * @param {Request} request
 	 * @param {Response} response
@@ -29,14 +29,15 @@ module.exports = (middleware) => {
 	 */
 	return (request, response, next) => {
 		let index = -1;
+		let length = stack.length;
 		return (function resolve(){
-			if (middleware[++index]) {
-				return middleware[index](request, response, resolve);
-			} else if (index == middleware.length) {
+			if (stack[++index]) {
+				return stack[index](request, response, resolve);
+			} else if (index == length) {
 				if (next) {
 					return next(request, response, resolve);
 				}
-			} else if (index > middleware.length + 1) {
+			} else if (index > length + 1) {
 				throw new Error('The next() called multiple times');
 			}
 			++index;
