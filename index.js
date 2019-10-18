@@ -23,24 +23,19 @@ module.exports = (stack) => {
 	/**
 	 * @param {Request} request
 	 * @param {Response} response
-	 * @param {function|void} next
-	 * @throws {Error}
+	 * @param {function} done
 	 * @returns {any}
 	 */
-	return (request, response, next) => {
-		let index = -1;
-		let length = stack.length;
-		return (function resolve(){
-			if (stack[++index]) {
-				return stack[index](request, response, resolve);
-			} else if (index == length) {
-				if (next) {
-					return next(request, response, resolve);
+	return (request, response, done) => {
+		let index = 0;
+		if (stack[index]) {
+			return stack[index++](request, response, function next(){
+				if (stack[index]) {
+					return stack[index++](request, response, next);
 				}
-			} else if (index > length + 1) {
-				throw new Error('The next() called multiple times');
-			}
-			++index;
-		})();
+				return done();
+			});
+		}
+		return done();
 	};
 };
