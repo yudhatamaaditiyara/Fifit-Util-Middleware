@@ -21,17 +21,16 @@
  */
 module.exports = (stack) => {
 	/**
-	 * @param {Request} request
-	 * @param {Response} response
+	 * @param {Context} context
 	 * @param {function} done
 	 * @returns {any}
 	 */
-	return (request, response, done) => {
+	return (context, done) => {
 		let index = 0;
 		if (stack[index]) {
-			return stack[index++](request, response, function next(){
+			return stack[index++](context, function next(){
 				if (stack[index]) {
-					return stack[index++](request, response, next);
+					return stack[index++](context, next);
 				}
 				return done();
 			});
