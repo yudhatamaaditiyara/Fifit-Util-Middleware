@@ -1,10 +1,10 @@
 {
-  "name": "fifit-util-middleware",
-  "description": "The Fifit Util Middleware",
-  "license": "Apache-2.0",
-  "version": "0.0.3",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yudhatamaaditiyara/Fifit-Util-Middleware.git"
-  }
+	"name": "fifit-util-middleware",
+	"description": "The Fifit Util Middleware",
+	"license": "Apache-2.0",
+	"version": "0.0.3",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yudhatamaaditiyara/Fifit-Util-Middleware.git"
+	}
 }
