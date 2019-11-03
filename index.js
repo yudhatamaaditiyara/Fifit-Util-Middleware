@@ -29,10 +29,7 @@ module.exports = (stack) => {
 		let index = 0;
 		if (stack[index]) {
 			return stack[index++](context, function next(){
-				if (stack[index]) {
-					return stack[index++](context, next);
-				}
-				return done();
+				return stack[index] ? stack[index++](context, next) : done();
 			});
 		}
 		return done();
