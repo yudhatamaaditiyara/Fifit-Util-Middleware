@@ -20,18 +20,18 @@
  * @returns {function}
  */
 module.exports = (stack) => {
-	/**
-	 * @param {Context} context
-	 * @param {function} done
-	 * @returns {any}
-	 */
-	return (context, done) => {
-		let index = 0;
-		if (stack[index]) {
-			return stack[index++](context, function next(){
-				return stack[index] ? stack[index++](context, next) : done();
-			});
-		}
-		return done();
-	};
+  /**
+   * @param {Context} context
+   * @param {function} done
+   * @returns {any}
+   */
+  return (context, done) => {
+    let index = 0;
+    if (stack[index]) {
+      return stack[index++](context, function next(){
+        return stack[index] ? stack[index++](context, next) : done();
+      });
+    }
+    return done();
+  };
 };
