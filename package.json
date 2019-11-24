@@ -8,9 +8,9 @@
     "url": "git+https://github.com/yudhatamaaditiyara/Fifit-Util-Middleware.git"
   },
   "devDependencies": {
-    "coveralls": "3.0.7",
-    "mocha": "6.2.2",
-    "nyc": "14.1.1"
+    "coveralls": "^3.0.7",
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1"
   },
   "engines": {
     "node": ">= 12.0.0"
